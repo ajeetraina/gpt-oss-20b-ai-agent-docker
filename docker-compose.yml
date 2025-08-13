@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
   # GPT-OSS-20B Model Service (managed by Docker Model Runner)
