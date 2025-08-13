@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # GPT-OSS-20B Model Service (managed by Docker Model Runner)
+  gpt-oss-model:
+    provider: 
+      type: model
+    model: ai/gpt-oss-20b
+    restart: unless-stopped
+    environment:
+      - MODEL_NAME=ai/gpt-oss-20b
+      - REASONING_LEVEL=medium
+
+  # AI Agent Application
+  ai-agent:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - gpt-oss-model
+    environment:
+      - MODEL_URL=http://gpt-oss-model:12434/engines/llama.cpp/v1
+      - MODEL_NAME=ai/gpt-oss-20b
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  # Optional: Web UI for the Agent
+  web-ui:
+    build:
+      context: ./web-ui
+      dockerfile: Dockerfile
+    depends_on:
+      - ai-agent
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    restart: unless-stopped
+
+  # Optional: Vector Database for RAG
+  vector-db:
+    image: chromadb/chroma:latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      - CHROMA_HOST=0.0.0.0
+      - CHROMA_PORT=8000
+    restart: unless-stopped
+
+volumes:
+  chroma_data:
+    driver: local
+
+networks:
+  default:
+    name: ai-agent-network
