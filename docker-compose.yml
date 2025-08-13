@@ -5,10 +5,10 @@ version: '3.8'
 
 # Models section - Define AI models using Docker Model Runner
 models:
-  gpt-oss-20b:
+  gpt-oss:
     provider:
       type: model
-    model: ai/gpt-oss-20b
+    model: ai/gpt-oss
     context_size: 128000
     
   # Optional: Smaller model for faster responses  
@@ -26,7 +26,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - MODEL_URL=http://host.docker.internal:12434/engines/llama.cpp/v1
-      - MODEL_NAME=ai/gpt-oss-20b
+      - MODEL_NAME=ai/gpt-oss
       - REASONING_LEVEL=medium
       - PYTHONUNBUFFERED=1
     ports:
@@ -48,7 +48,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - MODEL_URL=http://host.docker.internal:12434/engines/llama.cpp/v1
-      - MODEL_NAME=ai/gpt-oss-20b
+      - MODEL_NAME=ai/gpt-oss
       - MCP_GATEWAY_URL=http://mcp-gateway:3000
     ports:
       - "8001:8000"
