@@ -15,7 +15,7 @@ from dataclasses import dataclass
 class AgentConfig:
     """Configuration for the AI Agent"""
     model_url: str = "http://localhost:12434/engines/llama.cpp/v1"
-    model_name: str = "ai/gpt-oss-20b"
+    model_name: str = "ai/gpt-oss"
     max_tokens: int = 1000
     temperature: float = 0.7
     reasoning_level: str = "medium"  # low, medium, high
@@ -137,7 +137,7 @@ def main():
     if not check_docker_model_runner():
         print("\n📋 Setup Instructions:")
         print("1. Enable Docker Model Runner in Docker Desktop")
-        print("2. Run: docker model pull ai/gpt-oss-20b")
+        print("2. Run: docker model pull ai/gpt-oss")
         print("3. Wait for the model to download (may take a while)")
         return
     
