@@ -1,0 +1,72 @@
+{
+  "mcpServers": {
+    "duckduckgo": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-duckduckgo"
+      ],
+      "env": {
+        "DUCKDUCKGO_MAX_RESULTS": "10"
+      }
+    },
+    "brave": {
+      "command": "npx", 
+      "args": [
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      }
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-filesystem",
+        "/tmp"
+      ]
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-sqlite"
+      ],
+      "env": {
+        "DATABASE_URL": "sqlite:///tmp/database.db"
+      }
+    },
+    "weather": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-weather"
+      ],
+      "env": {
+        "OPENWEATHER_API_KEY": "${OPENWEATHER_API_KEY}"
+      }
+    }
+  },
+  "logging": {
+    "level": "info",
+    "output": "/app/logs/mcp.log"
+  },
+  "gateway": {
+    "port": 3000,
+    "cors": {
+      "enabled": true,
+      "origins": ["http://localhost:3001", "http://localhost:8000"]
+    },
+    "rateLimit": {
+      "enabled": true,
+      "maxRequests": 100,
+      "windowMs": 60000
+    }
+  }
+}
