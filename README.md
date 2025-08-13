@@ -39,8 +39,8 @@ cp .env.example .env
 ### 2. Pull AI Models
 
 ```bash
-# Pull GPT-OSS-20B model
-docker model pull ai/gpt-oss-20b
+# Pull GPT-OSS-20B model (correct command)
+docker model pull ai/gpt-oss
 
 # Optional: Pull smaller model for faster responses
 docker model pull ai/smollm2
@@ -106,7 +106,7 @@ graph TB
 ```bash
 # Model Configuration
 MODEL_URL=http://host.docker.internal:12434/engines/llama.cpp/v1
-MODEL_NAME=ai/gpt-oss-20b
+MODEL_NAME=ai/gpt-oss
 REASONING_LEVEL=medium
 
 # MCP Tools (optional but recommended)
