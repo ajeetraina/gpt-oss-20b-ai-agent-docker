@@ -229,8 +229,6 @@ If this project helped you build amazing AI agents, please star it! ⭐
 
 [![Star History Chart](https://api.star-history.com/svg?repos=ajeetraina/gpt-oss-20b-ai-agent-docker&type=Date)](https://star-history.com/#ajeetraina/gpt-oss-20b-ai-agent-docker&Date)
 
----
 
-**Built with ❤️ by [Ajeet Raina](https://github.com/ajeetraina) | Docker Captain & AI/ML Practitioner**
 
 *Following official Docker patterns from [compose-for-agents](https://github.com/docker/compose-for-agents)*
